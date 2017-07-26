@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabase } from 'angularfire2/database';
 
@@ -8,14 +8,16 @@ import { AngularFireDatabase } from 'angularfire2/database';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
   title = 'app';
   books;
 
-  constructor(af: AngularFireModule, db: AngularFireDatabase) {
-    db.list('/book').subscribe(x => {
-      this.books = x;
-      console.log(this.books);
-    });
+  constructor(af: AngularFireModule, private db: AngularFireDatabase) {
   }
+
+  ngOnInit() {
+    this.books = this.db.list('/book');
+  }
+
 }

@@ -7,7 +7,7 @@
 </div>
 <h2>Books: </h2>
 <ul>
-  <li *ngFor="let b of books">
+  <li *ngFor="let b of books | async">
     {{ b.author }} - {{ b.title }}
   </li>
 </ul>
