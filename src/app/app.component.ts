@@ -32,7 +32,8 @@ export class AppComponent implements OnInit {
 
     this.books = this.db.list('/books', {
       query: {
-        orderByChild: 'author',
+        orderByChild: 'title',
+        equalTo: 'Swing Time'
       }
     });
 
