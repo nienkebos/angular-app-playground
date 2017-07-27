@@ -19,7 +19,15 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.users = this.db.list('/users');
+    this.users = this.db.list('/users')
+      .map(users => {
+        users.map(user => {
+          user.booksRead = [];
+          for (var b in user.books)
+            user.booksRead.push(this.db.object('/books/' + b))
+        });
+        return users;
+      });
     this.books = this.db.list('/books');
     console.log(this.users)
   }

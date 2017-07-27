@@ -2,11 +2,19 @@
   <h1>
     Welcome to {{title}}!!
   </h1>
-  <p *ngFor="let user of users | async">
-    {{ user?.name }}
-  </p>
-
 </div>
+
+<ul>
+  <li *ngFor="let user of users | async">
+    {{ user?.name }}
+    <ul>
+      <li *ngFor="let book of user.booksRead">
+        {{ (book | async)?.author }} - {{ (book | async)?.title }}
+      </li>
+    </ul>
+  </li>
+</ul>
+
 
 <h2>Books: </h2>
 <button (click)="add()">Add book</button>
