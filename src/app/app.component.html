@@ -1,13 +1,21 @@
-<!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
   <h1>
     Welcome to {{title}}!!
   </h1>
+  <p *ngFor="let user of users | async">
+    {{ user?.name }}
+  </p>
 
 </div>
+
 <h2>Books: </h2>
+<button (click)="add()">Add book</button>
+<button (click)="update()">Update book</button>
+
 <ul>
   <li *ngFor="let b of books | async">
     {{ b.author }} - {{ b.title }}
+    <button (click)="removeItem(b.$key)">Delete</button>
+
   </li>
 </ul>
