@@ -29,14 +29,18 @@ export class AppComponent implements OnInit {
         });
         return users;
       });
-    this.books = this.db.list('/books');
-    console.log(this.users)
+
+    this.books = this.db.list('/books', {
+      query: {
+        orderByChild: 'author',
+      }
+    });
 
     // check if an object exists:
-    this.exists = this.db.object('users/user1/books/book1');
-    this.exists.subscribe(x => {
-      console.log(x)
-    })
+    // this.exists = this.db.object('users/user1/books/book1');
+    // this.exists.subscribe(x => {
+    //   console.log(x)
+    // })
   }
   add() {
     this.books.push({
