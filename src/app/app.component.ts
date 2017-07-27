@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
   title = 'app';
   books: FirebaseListObservable<any[]>;
   users: Observable<any[]>;
+  exists;
 
   constructor(private db: AngularFireDatabase) {
   }
@@ -30,6 +31,12 @@ export class AppComponent implements OnInit {
       });
     this.books = this.db.list('/books');
     console.log(this.users)
+
+    // check if an object exists:
+    this.exists = this.db.object('users/user1/books/book1');
+    this.exists.subscribe(x => {
+      console.log(x)
+    })
   }
   add() {
     this.books.push({
