@@ -4,6 +4,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 
 import { AppComponent } from './app.component';
+import { BooksComponent } from './books/books.component';
 
 
 export const firebaseConfig = {
@@ -17,7 +18,8 @@ export const firebaseConfig = {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BooksComponent
   ],
   imports: [
     BrowserModule,
