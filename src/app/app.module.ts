@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { BooksComponent } from './books/books.component';
 import { RatingsComponent } from './ratings/ratings.component';
 
+import { BooksService } from './books.service';
+
 
 export const firebaseConfig = {
     apiKey: "AIzaSyCGuQWghaSuTO7EPA_oJFhlFFhGyIYLPBw",
@@ -28,7 +30,9 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
   ],
-  providers: [],
+  providers: [
+    BooksService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

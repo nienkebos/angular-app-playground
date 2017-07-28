@@ -4,24 +4,26 @@ import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable }
 import { Observable } from 'rxjs/Observable'
 import 'rxjs/add/operator/map'
 
+import { BooksService } from '../books.service';
+
 @Component({
   selector: 'app-books',
   templateUrl: './books.component.html',
-  styleUrls: ['./books.component.css']
+  styleUrls: ['./books.component.css'],
+  providers: [BooksService]
 })
 export class BooksComponent implements OnInit {
   books: FirebaseListObservable<any[]>;
 
   @Input() title;
-  
-  constructor(private db: AngularFireDatabase) { }
+
+  constructor(private booksService: BooksService) { }
+  getBooks() {
+    this.books = this.booksService.getBooks();
+  }
 
   ngOnInit() {
-    this.books = this.db.list('/books', {
-      query: {
-        orderByChild: 'author',
-      }
-    });
+    this.getBooks();
   }
 
   add() {
