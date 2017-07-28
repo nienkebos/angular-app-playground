@@ -49,7 +49,7 @@ export class AppComponent implements OnInit {
   register() {
     this.afAuth.auth.createUserWithEmailAndPassword('email2@email.com', 'p@ssword')
       .then(authState => {
-        console.log("Register then", authState);
+        authState;
       })
       .catch( error => console.log("Register-error", error));
   }
