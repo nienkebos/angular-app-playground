@@ -12,16 +12,19 @@ import { BooksService } from '../books.service';
   styleUrls: ['./ratings.component.css']
 })
 export class RatingsComponent implements OnInit {
-  ratings: FirebaseListObservable<any[]>;
+  ratings: Observable<any[]>;
   @Input() bid;
 
   constructor(private booksService: BooksService) { }
   getRatings() {
-    this.ratings = this.booksService.getRatings(this.bid);
+    this.ratings = this.booksService.getRatings(this.bid)
+      
   }
 
   ngOnInit() {
     this.getRatings();
+    // console.log("rating", this.ratings);
+
   }
 
 }

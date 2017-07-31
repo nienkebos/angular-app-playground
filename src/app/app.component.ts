@@ -4,6 +4,8 @@ import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable }
 import { Observable } from 'rxjs/Observable'
 import 'rxjs/add/operator/map'
 
+import { UsersService } from './users.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,23 +15,25 @@ import 'rxjs/add/operator/map'
 
 export class AppComponent implements OnInit {
   title = 'app';
-  books: FirebaseListObservable<any[]>;
   users: Observable<any[]>;
-  exists;
+  user: FirebaseObjectObservable<any>;
+  uid;
 
-  constructor(private db: AngularFireDatabase) {
+  constructor(private usersService: UsersService) {
+  }
+
+  getUsers() {
+    this.users = this.usersService.getUsers();
+  }
+
+  getUser() {
+    this.usersService.getUser(this.uid).subscribe(res => {
+      this.user = res;
+    });
   }
 
   ngOnInit() {
-    this.users = this.db.list('/users')
-      .map(users => {
-        users.map(user => {
-          user.booksRead = [];
-          for (var b in user.books)
-            user.booksRead.push(this.db.object('/books/' + b))
-        });
-        return users;
-      });
+    this.getUsers();
   }
 
 }
