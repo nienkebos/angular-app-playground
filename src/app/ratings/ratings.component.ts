@@ -13,14 +13,11 @@ import { BooksService } from '../books.service';
 })
 export class RatingsComponent implements OnInit {
   ratings: FirebaseListObservable<any[]>;
-
-  book;
   @Input() bid;
 
   constructor(private booksService: BooksService) { }
   getRatings() {
-    this.ratings = this.booksService.getRatings(this.bid)
-
+    this.ratings = this.booksService.getRatings(this.bid);
   }
 
   ngOnInit() {

@@ -30,12 +30,6 @@ export class AppComponent implements OnInit {
         });
         return users;
       });
-
-    // check if an object exists:
-    // this.exists = this.db.object('users/user1/books/book1');
-    // this.exists.subscribe(x => {
-    //   console.log(x)
-    // })
   }
 
 }
