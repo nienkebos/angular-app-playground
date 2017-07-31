@@ -4,13 +4,12 @@ import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable }
 import { Observable } from 'rxjs/Observable'
 import 'rxjs/add/operator/map'
 
-import { BooksComponent } from './books/books.component';
-
 @Injectable()
 export class BooksService {
   books: FirebaseListObservable<any[]>;
   book: FirebaseObjectObservable<any>;
   ratings: FirebaseListObservable<any[]>;
+  users: Observable<any[]>;
 
   constructor(private db: AngularFireDatabase) { }
 
@@ -29,7 +28,7 @@ export class BooksService {
 
   getRatings(book) {
     this.ratings = this.db.list('/books/'+ book + '/ratings');
-    return this.ratings
+    return this.ratings;
   }
 
 }
