@@ -1,13 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { AppComponent } from './app.component';
 import { BooksComponent } from './books/books.component';
 import { RatingsComponent } from './ratings/ratings.component';
 
 import { BooksService } from './books.service';
+import { BookComponent } from './book/book.component';
 
 
 export const firebaseConfig = {
@@ -23,7 +24,8 @@ export const firebaseConfig = {
   declarations: [
     AppComponent,
     BooksComponent,
-    RatingsComponent
+    RatingsComponent,
+    BookComponent
   ],
   imports: [
     BrowserModule,

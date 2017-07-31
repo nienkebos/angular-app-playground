@@ -9,6 +9,8 @@ import { BooksComponent } from './books/books.component';
 @Injectable()
 export class BooksService {
   books: FirebaseListObservable<any[]>;
+  book: FirebaseObjectObservable<any>;
+  ratings: FirebaseListObservable<any[]>;
 
   constructor(private db: AngularFireDatabase) { }
 
@@ -19,6 +21,15 @@ export class BooksService {
       // }
     });
     return this.books;
+  }
+
+  getBook(book) {
+    return this.db.object('/books/' + book);
+  }
+
+  getRatings(book) {
+    this.ratings = this.db.list('/books/'+ book + '/ratings');
+    return this.ratings
   }
 
 }
