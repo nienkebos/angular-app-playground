@@ -32,4 +32,8 @@ export class BooksService {
     return this.ratings
   }
 
+  getUserPerRating(user) {
+    return this.db.object('users/' + user);
+  }
+
 }

@@ -1,6 +1,7 @@
-<p *ngFor="let rating of ratings | async">
+<p *ngFor="let rating of ratings">
 
 {{ rating.rating }}
 {{ rating.comment }}
+  <b> Rating van: {{ rating?.ratingDetails?.name }}</b>
 
 </p>
