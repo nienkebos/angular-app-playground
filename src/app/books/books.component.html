@@ -3,9 +3,18 @@
 
 <ul>
   <li *ngFor="let b of books | async">
-    {{ b.author }} - {{ b.title }}
-    <!-- <button (click)="update(b.$key)">Update book</button> -->
-    <button (click)="removeItem(b.$key)">Delete</button>
+    <!-- {{ b.author }} - {{ b.title }} -->
 
+    <book [bid]="b.$key">
+
+    </book>
+    <button (click)="update(b.$key)">Update book</button>
+    <button (click)="removeItem(b.$key)">Delete</button>
+    <!-- <button (click)="removeItem(b.$key)">Delete</button> -->
+    <button (click)="getDetails(b.$key)">Get details</button>
   </li>
 </ul>
+
+
+<book>
+</book>

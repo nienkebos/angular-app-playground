@@ -7,11 +7,12 @@
 <ul>
   <li *ngFor="let user of users | async">
     {{ user?.name }}
-    <ul>
+    
+    <!-- <ul>
       <li *ngFor="let book of user.booksRead">
         {{ (book | async)?.author }} - {{ (book | async)?.title }}
       </li>
-    </ul>
+    </ul> -->
   </li>
 </ul>
 
