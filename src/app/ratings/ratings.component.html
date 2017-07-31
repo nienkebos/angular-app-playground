@@ -1,6 +1,7 @@
-<p *ngFor="let rating of ratings | async">
+<p *ngFor="let rating of ratings">
 
-{{ rating.rating }}
-{{ rating.comment }}
-{{ rating.user }}
+{{ rating?.rating }}
+{{ rating?.comment }}
+
+{{ rating?.userDetails?.name }}
 </p>

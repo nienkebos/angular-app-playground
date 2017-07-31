@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable'
 import 'rxjs/add/operator/map'
 
 import { BooksService } from '../books.service';
+import { UsersService } from '../users.service';
 
 
 @Component({
@@ -11,14 +12,25 @@ import { BooksService } from '../books.service';
   templateUrl: './ratings.component.html',
   styleUrls: ['./ratings.component.css']
 })
+
 export class RatingsComponent implements OnInit {
-  ratings: Observable<any[]>;
+  ratings: any[] = [];
   @Input() bid;
 
-  constructor(private booksService: BooksService) { }
+  constructor(private booksService: BooksService, usersService: UsersService) { }
+
   getRatings() {
-    this.ratings = this.booksService.getRatings(this.bid)
-      
+    this.booksService.getRatings(this.bid).subscribe(res => {
+      if (res.length) {
+        for (let rating of res) {
+          let username = rating.user;
+          this.usersService.getUserPerRating(username).subscribe(userDetails => {
+            rating.userDetails = userDetails;
+            this.ratings.push(rating);
+          });
+        }
+      }
+    })
   }
 
   ngOnInit() {

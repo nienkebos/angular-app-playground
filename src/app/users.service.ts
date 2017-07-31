@@ -11,20 +11,24 @@ export class UsersService {
   constructor(private db: AngularFireDatabase) { }
 
   getUsers() {
-     this.users = this.db.list('/users')
-        .map(users => {
-          users.map(user => {
-            user.booksRead = [];
-            for (var b in user.books)
-              user.booksRead.push(this.db.object('/books/' + b));
-          });
-          return users;
+   this.users = this.db.list('/users')
+      .map(users => {
+        users.map(user => {
+          user.booksRead = [];
+          for (var b in user.books)
+            user.booksRead.push(this.db.object('/books/' + b));
         });
-      return this.users;
+        return users;
+      });
+    return this.users;
   }
 
   getUser(user) {
     return this.db.object('/users/' + user);
+  }
+
+  getUserPerRating(username) {
+    return this.db.object('/users/' + username);
   }
 
 }

@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map'
 export class BooksService {
   books: FirebaseListObservable<any[]>;
   book: FirebaseObjectObservable<any>;
-  ratings: Observable<any[]>;
+  ratings: FirebaseListObservable<any[]>;
   users: Observable<any[]>;
 
   constructor(private db: AngularFireDatabase) { }
@@ -27,19 +27,8 @@ export class BooksService {
   }
 
   getRatings(book) {
-    this.ratings = this.db.list('/books/'+ book + '/ratings')
-      // .map(ratings => {
-      //   ratings.map(rating => {
-      //     if (rating.user == this.db.object('/users/' + key))
-      //       rating.user = this.db.object('/users/' + $key);
-      //   })
-      //   return ratings;
-      // });
-    return this.ratings
-  }
-
-  getRating(rating) {
-    return this.db.object('/books/' + book + '/ratings/' + rating);
+    this.ratings = this.db.list('/books/'+ book + '/ratings');
+    return this.ratings;
   }
 
 }
